@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Page</title>
+</head>
+<body>
+    <h1>Welcome to {{user.first_name}} {{user.last_name}}'s User Page</h1>
+    
+    <h3>These are all of {{user.first_name}}'s favorited books!</h3>
+    <ul>
+        {% for books in user.favorited_books.all %}
+        <li>{{books.title}}</li>    
+        {% endfor %} 
+    </ul>
+<a href="/main">Home Page</a>
+</body>
+</html>

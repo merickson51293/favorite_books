@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Book List</title>
+</head>
+<body>
+    <h1>Welcome {{request.session.user_name}}</h1>
+    <a href="/logout">Logout</a>
+    <h2>Add a Favorite Book</h2>
+        <form action="/add_book" method="post">
+            {% csrf_token %}
+        Title: <input type="text" name="title">
+        Description: <input type="text" name="desc">
+        <input type="submit" value="Add Book">
+        </form>
+    <h2>All Books</h2>
+    {% for books in all_books %}
+        <h3><b><a href="/book/{{books.id}}">{{books.title}}</a></b></h3>
+        {% if this_user in books.favorited_by.all %}
+            <div class="container">
+                <h5><a href="/book/{{book.id}}">{{book.title}}</a></h5>
+                <p>(added by <a href="/user/{{books.person.id}}">{{books.person.first_name}} {{books.person.last_name}})</a></p>
+                <p>this is one of your favorites</p>
+            </div>
+        {% endif %}
+        {% if this_user not in books.favorited_by.all %}
+                <div class="container">
+                    <h5><a href="/book/{{book.id}}">{{book.title}}</a></h5>
+                    <p>(added by <a href="/user/{{books.person.id}}">{{books.person.first_name}} {{books.person.last_name}})</a></p>
+                    <a href="/favorite/{{books.id}}" role="button" class="btn btn-warning">Add to Favorites</a>
+                </div>
+        {% endif %}
+        {% if books.person.id == request.session.user_id %}
+        <a href="/delete_book/{{books.id}}">Delete</a>
+        {% endif %}
+    {% endfor %}
+                
+</body>
+</html>

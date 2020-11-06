@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration and Login - Favorite Books</title>
+</head>
+<body>
+    <h1>Welcome to our Favorite Books Page!</h1>
+    {% if messages %}
+    <ul>
+        {% for error in messages %}
+        <li>{{error}}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <h2>Registration</h2>
+    
+    <form action="/create_user" method="post">
+        {% csrf_token %}
+        First Name:<input type="text" name="first_name">
+        Last Name:<input type="text" name="last_name">
+        Email Address:<input type="email" name="email">
+        Password:<input type="password" name="password">
+        Confirm Password:<input type="password" name="conf_password">
+        <input type="submit" value="Register">
+    </form>
+
+    <h2>Login</h2>
+
+    <form action="/login" method="post">
+        {% csrf_token %}
+        Email: <input type="email" name="email">
+        Password: <input type="password" name="password">
+        <input type="submit" value="Login">
+    </form>
+
+</body>
+</html>
