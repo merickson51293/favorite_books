@@ -8,7 +8,7 @@ def index(request):
 
 def main(request):
     context={
-        'all_books':Book.objects.all(),
+        'all_books':Quote.objects.all(),
         'this_user': User.objects.get(id=request.session['user_id'])
     }
     return render(request, "main.html", context)

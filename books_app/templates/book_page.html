@@ -31,6 +31,7 @@
                     {% for fav in one_book.favorited_by.all %}
                     <li>{{fav.first_name}} {{fav.last_name}}</li>
                     {% endfor %}
+                    {{one_book.favorited_by.count}}
                 </ul>
                 {% if current_user in one_book.favorited_by.all %}
                 <a href="/unfavorite/{{one_book.id}}" role="button">Remove From Favorites</a>

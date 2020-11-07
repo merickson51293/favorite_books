@@ -1,0 +1,3 @@
+(djangoPy3Env) project_name> git init
+(djangoPy3Env) project_name> git add --all
+(djangoPy3Env) project_name> git commit -m "initial commit"
